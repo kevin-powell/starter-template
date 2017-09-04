@@ -4,10 +4,12 @@ const gulp = require('gulp'),
        autoprefixer = require('gulp-autoprefixer'), 
        concat = require('gulp-concat'),
        imagemin = require('gulp-imagemin'),
-       cache = require('gulp-cache');
+       cache = require('gulp-cache'),
+       del = require('del'),
+       runSequence = require('run-sequence');
 
 // Static server & watch scss + html files
-gulp.task('serve', ['sass'], function() {
+gulp.task('watch', ['sass'], function() {
 
   browserSync.init({
     server: './src'
@@ -28,7 +30,8 @@ gulp.task('sass', function() {
 });
 
 
-gulp.task('default', ['serve']);
+// default will also watch
+gulp.task('default', ['watch']);
 
 
 // Concatenate & minify JS
@@ -58,7 +61,20 @@ gulp.task('images', function() {
   .pipe(gulp.dest('dist/images'))
 })
 
-// TODO: add and set up cleaning (use 'del')
+// Move HTML files to dist
+gulp.task('html', function() {
+  return gulp.src('src/**/*.html')
+  .pipe(gulp.dest('dist'))
+})
 
+// Clean up the dist folder
+gulp.task('clean:dist', function() {
+  return del.sync('dist');
+})
 
-gulp.task('build', ['scripts, css, images']);
+gulp.task('build', function(callback) {
+  runSequence('clean:dist', 'sass',
+    ['scripts', 'css', 'images', 'html'])
+});
+
+gulp.task('build', ['clean','scripts', 'css', 'images']);
