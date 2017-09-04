@@ -1,0 +1,32 @@
+{
+  "name": "starter-template",
+  "version": "1.0.0",
+  "description": "Template to start new projects using npm & gulp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin-powell/starter-template.git"
+  },
+  "author": "Kevin Powell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevin-powell/starter-template/issues"
+  },
+  "homepage": "https://github.com/kevin-powell/starter-template#readme",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-cache": "^0.4.6",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-imagemin": "^3.3.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0"
+  }
+}
